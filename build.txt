@@ -1,0 +1,3 @@
+displayName = Travelling Merchant Sells More Items
+author = tieeeeen1994
+version = 0.1
