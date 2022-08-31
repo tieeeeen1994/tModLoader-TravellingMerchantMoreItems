@@ -17,11 +17,17 @@ namespace TravellingMerchantMoreItems.Configs
         [DefaultValue(false)]
         public bool celestialMagnetAlwaysAvailable;
 
-        [Label("Triple cost for added items")]
-        [Tooltip("Items that will be made available by the mod will have their cost tripled.\n" +
+        [Label("Multiply cost for added items")]
+        [Tooltip("Items that will be made available by the mod will have their cost multiplied.\n" +
                  "However, if the vanilla shop decides to add the item in question, they will be sold at normal price.")]
         [DefaultValue(true)]
-        public bool tripleCost;
+        public bool multiplyCost;
+
+        [Label("Multiplied constant value")]
+        [Tooltip("The value in which the items made available by the mod will be multiplied with the cost.")]
+        [DefaultValue(3)]
+        [Range(1, 100)]
+        public int multiplyCostValue;
 
         [Label("Merchant sells Music Box instead")]
         [Tooltip("The Merchant (not Travelling) will sell the Music Box instead of the Wizard.")]

@@ -6,9 +6,14 @@ It works by allowing the vanilla bnehavior to run through the logic of adding th
 
 The mod has extra configuration to make it customizable depending on the playthrough, such as Ammo Box and Celestial magnet getting the same behaviour in the Travelling merchant's shop.
 
+It can be configured to change the multiplied cost instead of triple the cost.
+
 It also has extra features like making the Goblin Tinkerer sell Toolbox and Merchant sell the Music Box instead of the Wizard.
 
 # Changelogs
+
+v0.2
+- Made the multiplied cost configurable.
 
 v0.1
 - Initial release.
