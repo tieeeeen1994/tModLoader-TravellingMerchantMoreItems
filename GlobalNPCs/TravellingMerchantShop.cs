@@ -55,10 +55,10 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
             foreach (Item shopItem in shop) if (shopItem.type == itemID) return;
 
             Item newShopItem = new Item(itemID);
-            if (TravellingMerchantMoreItems.ServerConfig.tripleCost)
+            if (TravellingMerchantMoreItems.ServerConfig.multiplyCost)
             {
                 Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out int _, out int newShopItemValue);
-                newShopItem.shopCustomPrice = newShopItemValue * 3;
+                newShopItem.shopCustomPrice = newShopItemValue * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue;
             }
             shop[nextSlot++] = newShopItem;
         }
