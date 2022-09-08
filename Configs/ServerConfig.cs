@@ -51,8 +51,8 @@ namespace TravellingMerchantMoreItems.Configs
         public bool merchantSellsMusicBox;
 
         [Label("Merchant also sells Ultrabright Torch")]
-        [Tooltip("The Merchant will also sell Ultrabright Torches for triple the cost.\n" +
-                 "This config is affected by the triple cost setting.")]
+        [Tooltip("The Merchant will also sell Ultrabright Torches for multiplied cost.\n" +
+                 "This config is affected by the multiply cost setting.")]
         [DefaultValue(false)]
         public bool merchantSellsUltraBrightTorch;
 

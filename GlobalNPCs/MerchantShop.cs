@@ -19,15 +19,15 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
             if (TravellingMerchantMoreItems.ServerConfig.merchantSellsUltraBrightTorch) AddItemWithChecks(shop.item, ref nextSlot, ItemID.UltrabrightTorch, true);
         }
 
-        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID, bool tripleCost)
+        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID, bool multiplyCost)
         {
             foreach (Item shopItem in shop) if (shopItem.type == itemID) return;
 
             Item newShopItem = new Item(itemID);
-            if (TravellingMerchantMoreItems.ServerConfig.tripleCost && tripleCost)
+            if (TravellingMerchantMoreItems.ServerConfig.multiplyCost && multiplyCost)
             {
                 Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out int _, out int newShopItemValue);
-                newShopItem.shopCustomPrice = newShopItemValue * 3;
+                newShopItem.shopCustomPrice = newShopItemValue * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue;
             }
             shop[nextSlot++] = newShopItem;
         }
