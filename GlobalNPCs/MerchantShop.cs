@@ -15,17 +15,21 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
         {
             if (!TravellingMerchantMoreItems.ServerConfig.merchantSellsMusicBox || type != NPCID.Merchant) return;
 
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.MusicBox);
+            AddItemWithChecks(shop.item, ref nextSlot, ItemID.MusicBox, false);
+            if (TravellingMerchantMoreItems.ServerConfig.merchantSellsUltraBrightTorch) AddItemWithChecks(shop.item, ref nextSlot, ItemID.UltrabrightTorch, true);
         }
 
-        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID)
+        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID, bool tripleCost)
         {
-            foreach (Item shopItem in shop)
-            {
-                if (shopItem.type == itemID) return;
-            }
+            foreach (Item shopItem in shop) if (shopItem.type == itemID) return;
 
-            shop[nextSlot++] = new Item(itemID);
+            Item newShopItem = new Item(itemID);
+            if (TravellingMerchantMoreItems.ServerConfig.tripleCost && tripleCost)
+            {
+                Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out int _, out int newShopItemValue);
+                newShopItem.shopCustomPrice = newShopItemValue * 3;
+            }
+            shop[nextSlot++] = newShopItem;
         }
     }
 }

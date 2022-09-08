@@ -10,5 +10,11 @@ It also has extra features like making the Goblin Tinkerer sell Toolbox and Merc
 
 # Changelogs
 
+v0.2
+- Add configuration to allow Travelling Merchant to sell all functional accessories.
+- Add configuration to allow Travelling Merchant to sell all functional weapons.
+- Add configuration to allow Travelling Merchant to sell Sitting Duck and Ultrabright Torch.
+- Add configuration to allow Merchant to also sell Ultrabright Torch.
+
 v0.1
 - Initial release.
