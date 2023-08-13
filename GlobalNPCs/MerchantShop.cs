@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Helpers.Shops;
 
 namespace TravellingMerchantMoreItems.GlobalNPCs
 {
@@ -11,25 +12,25 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
             return entity.type == NPCID.Merchant;
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
-            if (!TravellingMerchantMoreItems.ServerConfig.merchantSellsMusicBox || type != NPCID.Merchant) return;
+            if (npc.type != NPCID.Merchant) return;
 
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.MusicBox, false);
-            if (TravellingMerchantMoreItems.ServerConfig.merchantSellsUltraBrightTorch) AddItemWithChecks(shop.item, ref nextSlot, ItemID.UltrabrightTorch, true);
+            if (TravellingMerchantMoreItems.ServerConfig.merchantSellsMusicBox) AddItemWithChecks(items, ItemID.MusicBox, false);
+            if (TravellingMerchantMoreItems.ServerConfig.merchantSellsUltraBrightTorch) AddItemWithChecks(items, ItemID.UltrabrightTorch, true);
         }
 
-        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID, bool multiplyCost)
+        private void AddItemWithChecks(Item[] shop, int itemID, bool multiplyCost)
         {
             foreach (Item shopItem in shop) if (shopItem.type == itemID) return;
 
-            Item newShopItem = new Item(itemID);
+            Item newShopItem = new(itemID);
             if (TravellingMerchantMoreItems.ServerConfig.multiplyCost && multiplyCost)
             {
-                Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out int _, out int newShopItemValue);
-                newShopItem.shopCustomPrice = newShopItemValue * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue;
+                Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out long _, out long newShopItemValue);
+                newShopItem.shopCustomPrice = (int)newShopItemValue * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue;
             }
-            shop[nextSlot++] = newShopItem;
+            shop[DetectNextEmptySlot(shop)] = newShopItem;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Helpers.Shops;
 
 namespace TravellingMerchantMoreItems.GlobalNPCs
 {
@@ -11,56 +12,57 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
             return entity.type == NPCID.TravellingMerchant;
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
-            if (type != NPCID.TravellingMerchant) return;
+            if (npc.type != NPCID.TravellingMerchant) return;
 
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.Stopwatch);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.LifeformAnalyzer);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.DPSMeter);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.ActuationAccessory);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.PortableCementMixer);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.PaintSprayer);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.ExtendoGrip);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.BrickLayer);
-            if (TravellingMerchantMoreItems.ServerConfig.ammoBoxAlwaysAvailable) AddItemWithChecks(shop.item, ref nextSlot, ItemID.AmmoBox);
-            if (TravellingMerchantMoreItems.ServerConfig.sittingDuckAlwaysAvailable) AddItemWithChecks(shop.item, ref nextSlot, ItemID.SittingDucksFishingRod);
-            if (TravellingMerchantMoreItems.ServerConfig.ultraBrightTorchAlwaysAvailable) AddItemWithChecks(shop.item, ref nextSlot, ItemID.UltrabrightTorch);
+            AddItemWithChecks(items, ItemID.Stopwatch);
+            AddItemWithChecks(items, ItemID.Stopwatch);
+            AddItemWithChecks(items, ItemID.LifeformAnalyzer);
+            AddItemWithChecks(items, ItemID.DPSMeter);
+            AddItemWithChecks(items, ItemID.ActuationAccessory);
+            AddItemWithChecks(items, ItemID.PortableCementMixer);
+            AddItemWithChecks(items, ItemID.PaintSprayer);
+            AddItemWithChecks(items, ItemID.ExtendoGrip);
+            AddItemWithChecks(items, ItemID.BrickLayer);
+            if (TravellingMerchantMoreItems.ServerConfig.ammoBoxAlwaysAvailable) AddItemWithChecks(items, ItemID.AmmoBox);
+            if (TravellingMerchantMoreItems.ServerConfig.sittingDuckAlwaysAvailable) AddItemWithChecks(items, ItemID.SittingDucksFishingRod);
+            if (TravellingMerchantMoreItems.ServerConfig.ultraBrightTorchAlwaysAvailable) AddItemWithChecks(items, ItemID.UltrabrightTorch);
             if (TravellingMerchantMoreItems.ServerConfig.functionalAccessoriesAlwaysAvailable)
             {
-                AddItemWithChecks(shop.item, ref nextSlot, ItemID.CelestialMagnet);
-                AddItemWithChecks(shop.item, ref nextSlot, ItemID.YellowCounterweight);
-                AddItemWithChecks(shop.item, ref nextSlot, ItemID.BlackCounterweight);
+                AddItemWithChecks(items, ItemID.CelestialMagnet);
+                AddItemWithChecks(items, ItemID.YellowCounterweight);
+                AddItemWithChecks(items, ItemID.BlackCounterweight);
             }
             if (TravellingMerchantMoreItems.ServerConfig.functionalWeaponsAlwaysAvailable)
             {
-                AddItemWithChecks(shop.item, ref nextSlot, ItemID.Katana);
-                if (NPC.downedBoss1) AddItemWithChecks(shop.item, ref nextSlot, ItemID.Code1);
-                if (TravellingMerchantMoreItems.AnyMechBossDowned) AddItemWithChecks(shop.item, ref nextSlot, ItemID.Code2);
-                if (WorldGen.shadowOrbSmashed) AddItemWithChecks(shop.item, ref nextSlot, ItemID.Revolver);
-                if (NPC.downedPlantBoss) AddItemWithChecks(shop.item, ref nextSlot, ItemID.PulseBow);
-                if (NPC.downedPlantBoss) AddItemWithChecks(shop.item, ref nextSlot, ItemID.PulseBow);
+                AddItemWithChecks(items, ItemID.Katana);
+                if (NPC.downedBoss1) AddItemWithChecks(items, ItemID.Code1);
+                if (TravellingMerchantMoreItems.AnyMechBossDowned) AddItemWithChecks(items, ItemID.Code2);
+                if (WorldGen.shadowOrbSmashed) AddItemWithChecks(items, ItemID.Revolver);
+                if (NPC.downedPlantBoss) AddItemWithChecks(items, ItemID.PulseBow);
+                if (NPC.downedPlantBoss) AddItemWithChecks(items, ItemID.PulseBow);
                 if (Main.hardMode)
                 {
-                    AddItemWithChecks(shop.item, ref nextSlot, ItemID.ZapinatorOrange);
-                    AddItemWithChecks(shop.item, ref nextSlot, ItemID.BouncingShield);
-                    AddItemWithChecks(shop.item, ref nextSlot, ItemID.Gatligator);
+                    AddItemWithChecks(items, ItemID.ZapinatorOrange);
+                    AddItemWithChecks(items, ItemID.BouncingShield);
+                    AddItemWithChecks(items, ItemID.Gatligator);
                 }
-                else if (NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee) AddItemWithChecks(shop.item, ref nextSlot, ItemID.ZapinatorGray);
+                else if (NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee) AddItemWithChecks(items, ItemID.ZapinatorGray);
             }
         }
 
-        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID)
+        private void AddItemWithChecks(Item[] shop, int itemID)
         {
             foreach (Item shopItem in shop) if (shopItem.type == itemID) return;
 
-            Item newShopItem = new Item(itemID);
+            Item newShopItem = new(itemID);
             if (TravellingMerchantMoreItems.ServerConfig.multiplyCost)
             {
-                Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out int _, out int newShopItemValue);
-                newShopItem.shopCustomPrice = newShopItemValue * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue;
+                Main.LocalPlayer.GetItemExpectedPrice(newShopItem, out long _, out long newShopItemValue);
+                newShopItem.shopCustomPrice = (int)newShopItemValue * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue;
             }
-            shop[nextSlot++] = newShopItem;
+            shop[DetectNextEmptySlot(shop)] = newShopItem;
         }
     }
 }

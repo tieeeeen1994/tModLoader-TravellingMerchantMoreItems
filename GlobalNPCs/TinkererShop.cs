@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Helpers.Shops;
 
 namespace TravellingMerchantMoreItems.GlobalNPCs
 {
@@ -11,24 +12,27 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
             return entity.type == NPCID.GoblinTinkerer;
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
-            if (!TravellingMerchantMoreItems.ServerConfig.merchantSellsMusicBox || type != NPCID.GoblinTinkerer) return;
+            if (npc.type != NPCID.GoblinTinkerer) return;
 
-            Main.LocalPlayer.GetItemExpectedPrice(new Item(ItemID.Toolbox), out int _, out int price);
-            AddItemWithChecks(shop.item, ref nextSlot, ItemID.Toolbox, price * 3);
+            if (TravellingMerchantMoreItems.ServerConfig.tinkererSellsToolbox)
+            {
+                Main.LocalPlayer.GetItemExpectedPrice(new Item(ItemID.Toolbox), out long _, out long price);
+                AddItemWithChecks(items, ItemID.Toolbox, (int)price * TravellingMerchantMoreItems.ServerConfig.multiplyCostValue);
+            }
         }
 
-        private void AddItemWithChecks(Item[] shop, ref int nextSlot, int itemID, int? customCost = null)
+        private void AddItemWithChecks(Item[] shop, int itemID, int? customCost = null)
         {
             foreach (Item shopItem in shop)
             {
                 if (shopItem.type == itemID) return;
             }
 
-            Item newShopItem = new Item(itemID);
+            Item newShopItem = new(itemID);
             newShopItem.shopCustomPrice = customCost;
-            shop[nextSlot++] = newShopItem;
+            shop[DetectNextEmptySlot(shop)] = newShopItem;
         }
     }
 }

@@ -12,6 +12,9 @@ It also has extra features like making the Goblin Tinkerer sell Toolbox and Merc
 
 # Changelogs
 
+v0.4
+- Fix a bug where the configs disrespect each other.
+
 v0.3
 - Add configuration to allow Travelling Merchant to sell all functional accessories.
 - Add configuration to allow Travelling Merchant to sell all functional weapons.

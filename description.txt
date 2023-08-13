@@ -12,6 +12,14 @@ GitHub Repository: https://github.com/tieeeeen1994/tModLoader-TravellingMerchant
 
 Changelogs:
 
+v1.0
+- Ported voer to the new tModLoader version.
+- Fixed tinkerer's pricing for Toolbox (if enabled) to not respect the config.
+- The mod might need help with migrating to the new localization workflow.
+
+v0.4
+- Fix a bug where the configs disrespect each other.
+
 v0.3
 - Add configuration to allow Travelling Merchant to sell all functional accessories.
 - Add configuration to allow Travelling Merchant to sell all functional weapons.

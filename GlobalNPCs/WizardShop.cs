@@ -11,11 +11,11 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
             return entity.type == NPCID.Wizard;
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
-            if (!TravellingMerchantMoreItems.ServerConfig.merchantSellsMusicBox || type != NPCID.Wizard) return;
+            if (npc.type != NPCID.Wizard) return;
 
-            RemoveItemWithChecks(shop.item, ItemID.MusicBox);
+            if (TravellingMerchantMoreItems.ServerConfig.merchantSellsMusicBox) RemoveItemWithChecks(items, ItemID.MusicBox);
         }
 
         private void RemoveItemWithChecks(Item[] shop, int itemID)

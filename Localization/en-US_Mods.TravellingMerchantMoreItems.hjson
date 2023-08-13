@@ -1,0 +1,67 @@
+Configs: {
+	ServerConfig: {
+		DisplayName: Server Config
+
+		ammoBoxAlwaysAvailable: {
+			Label: Ammo Box always available
+			Tooltip: Allows the Ammo Box to always be available.
+		}
+
+		sittingDuckAlwaysAvailable: {
+			Label: Sitting Duck always available
+			Tooltip: Allows the Sitting Duck to always be available.
+		}
+
+		ultraBrightTorchAlwaysAvailable: {
+			Label: Ultrabright Torch always available
+			Tooltip: Allows the Ultrabright Torch to always be available.
+		}
+
+		functionalAccessoriesAlwaysAvailable: {
+			Label: Functional accesories always available
+			Tooltip:
+				'''
+				Allows functional acessories to always be available.
+				Ingredients for Architect Gizmo Pack and Cell Phone are always available even if this config is off.
+				'''
+		}
+
+		functionalWeaponsAlwaysAvailable: {
+			Label: Functional weapons always available
+			Tooltip: Allows functional weapons to always be available.
+		}
+
+		multiplyCost: {
+			Label: Multiply cost for added items
+			Tooltip:
+				'''
+				Items that will be made available by the mod will have their cost multiplied.
+				However, if the vanilla shop decides to add the item in question, they will be sold at normal price.
+				'''
+		}
+
+		multiplyCostValue: {
+			Label: Multiplied constant value
+			Tooltip: The value in which the items made available by the mod will be multiplied with the cost.
+		}
+
+		merchantSellsMusicBox: {
+			Label: Merchant sells Music Box instead
+			Tooltip: The Merchant (not Travelling) will sell the Music Box instead of the Wizard.
+		}
+
+		merchantSellsUltraBrightTorch: {
+			Label: Merchant also sells Ultrabright Torch
+			Tooltip:
+				'''
+				The Merchant will also sell Ultrabright Torches for multiplied cost.
+				This config is affected by the multiply cost setting.
+				'''
+		}
+
+		tinkererSellsToolbox: {
+			Label: Goblin Tinkerer sells Toolbox
+			Tooltip: The Goblin Tinkerer will sell the Toolbox.
+		}
+	}
+}
