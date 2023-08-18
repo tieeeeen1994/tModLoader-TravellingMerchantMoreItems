@@ -27,7 +27,7 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
         {
             foreach (Item shopItem in shop)
             {
-                if (shopItem.type == itemID) return;
+                if (shopItem != null && shopItem.type == itemID) return;
             }
 
             Item newShopItem = new(itemID);

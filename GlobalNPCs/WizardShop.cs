@@ -24,7 +24,7 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
 
             for (int i = 0; i < shop.Length; i++)
             {
-                if (shop[i].type == itemID)
+                if (shop[i] != null && shop[i].type == itemID)
                 {
                     removedItemIndex = i;
                     break;

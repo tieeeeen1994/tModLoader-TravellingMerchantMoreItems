@@ -12,8 +12,11 @@ GitHub Repository: https://github.com/tieeeeen1994/tModLoader-TravellingMerchant
 
 Changelogs:
 
+v1.1
+- Fix a bug where the affected shops by this mod will only have fewer items to sell.
+
 v1.0
-- Ported voer to the new tModLoader version.
+- Ported over to the new tModLoader version.
 - Fixed tinkerer's pricing for Toolbox (if enabled) to not respect the config.
 - The mod might need help with migrating to the new localization workflow.
 

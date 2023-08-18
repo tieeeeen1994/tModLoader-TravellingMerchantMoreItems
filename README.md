@@ -12,6 +12,14 @@ It also has extra features like making the Goblin Tinkerer sell Toolbox and Merc
 
 # Changelogs
 
+v1.1
+- Fix a bug where the affected shops by this mod will only have fewer items to sell.
+
+v1.0
+- Ported over to the new tModLoader version.
+- Fixed tinkerer's pricing for Toolbox (if enabled) to not respect the config.
+- The mod might need help with migrating to the new localization workflow.
+
 v0.4
 - Fix a bug where the configs disrespect each other.
 

@@ -22,7 +22,7 @@ namespace TravellingMerchantMoreItems.GlobalNPCs
 
         private void AddItemWithChecks(Item[] shop, int itemID, bool multiplyCost)
         {
-            foreach (Item shopItem in shop) if (shopItem.type == itemID) return;
+            foreach (Item shopItem in shop) if (shopItem != null && shopItem.type == itemID) return;
 
             Item newShopItem = new(itemID);
             if (TravellingMerchantMoreItems.ServerConfig.multiplyCost && multiplyCost)
